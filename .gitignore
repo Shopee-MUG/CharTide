@@ -1,0 +1,13 @@
+.omc/
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+.idea/
+.vscode/
+*.swp
+.env
+.venv/
+build/
+dist/
+*.egg-info/
