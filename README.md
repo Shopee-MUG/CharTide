@@ -1,6 +1,8 @@
 <div align="center">
-  <h1>CharTide: Data-Centric Chart-to-Code Generation via Tri-Perspective Tuning and Inquiry-Driven Evolution</h1>
+  <h1>CharTide: Data-Centric Chart-to-Code Generation via Tri-Perspective Tuning and Inquiry-Driven Evolution </h1>
+  
 </div>
+
 
 <div align="center">
 <a href='https://arxiv.org/abs/2604.22192'><img src='https://img.shields.io/badge/Arxiv-2604.22192-b31b1b.svg?logo=arXiv'></a>&ensp;<a href='https://huggingface.co/collections/Fengx1nn/chartide'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face%20-models-blue'></a>&ensp;<a href='https://github.com/Shopee-MUG/CharTide/blob/main/LICENSE'><img src='https://img.shields.io/badge/License-Apache_2.0-green.svg'></a>
@@ -39,11 +41,9 @@ Xiangxi Zheng<sup>1</sup>, Kuang He<sup>2</sup>, Jiayi Hu<sup>3</sup>, Ping Yu<s
 | CharTide-7B | Qwen2.5-VL-7B-Instruct | [Fengx1nn/CharTide-7B](https://huggingface.co/Fengx1nn/CharTide-7B) |
 | CharTide-8B | Qwen3-VL-8B-Instruct | [Fengx1nn/CharTide-8B](https://huggingface.co/Fengx1nn/CharTide-8B) |
 
-Both models are trained with our two-stage pipeline: (1) full-parameter SFT on a 2M-sample Tri-Perspective dataset that decouples visual perception, pure-text code logic, and modality fusion; and (2) Inquiry-Driven RL on ~20k verified VQA samples, optimized with GRPO and a hybrid reward (atomic QA verification + WebSSL-1B visual consistency).
-
 
 ## 📊 Performance
-We compare CharTide against proprietary and open-source models on **ChartMimic**, **Plot2Code**, and **ChartX**. *For Plot2Code we replace the GPT-4V evaluator with GPT-4o and report normalized scores over the full test set to avoid survivorship bias (see paper Appendix for details).*
+We compare CharTide against proprietary and open-source models on **ChartMimic**, **Plot2Code**, and **ChartX**. *For Plot2Code we replace the GPT-4V evaluator with GPT-4o and report normalized scores over the full test set to avoid survivorship bias (see paper Appendix for details).* In each column **bold** marks the best open-source result and <u>underline</u> marks the second-best.
 
 <table>
 <thead>
@@ -77,7 +77,7 @@ We compare CharTide against proprietary and open-source models on **ChartMimic**
     <td>GPT-5</td>
     <td>96.8</td><td>82.1</td><td>94.7</td>
     <td>87.8</td><td>61.9</td><td>7.28</td>
-    <td><b>3.59</b></td>
+    <td>3.59</td>
   </tr>
   <tr>
     <td>Gemini-2.5-Pro</td>
@@ -116,7 +116,7 @@ We compare CharTide against proprietary and open-source models on **ChartMimic**
     <td>Qwen3-VL-235B-A22B</td>
     <td>93.3</td><td>76.8</td><td>87.6</td>
     <td>84.8</td><td>46.2</td><td>5.19</td>
-    <td>3.35</td>
+    <td><b>3.35</b></td>
   </tr>
   <tr>
     <td colspan="8"><i>Open-Source Chart-Domain</i></td>
@@ -130,7 +130,7 @@ We compare CharTide against proprietary and open-source models on **ChartMimic**
   <tr>
     <td>ChartMaster-7B</td>
     <td>93.5</td><td>77.1</td><td>83.3</td>
-    <td>89.4</td><td>53.6</td><td>4.73</td>
+    <td><u>89.4</u></td><td>53.6</td><td>4.73</td>
     <td>2.82</td>
   </tr>
   <tr>
@@ -165,8 +165,8 @@ We compare CharTide against proprietary and open-source models on **ChartMimic**
   </tr>
   <tr>
     <td><b>CharTide-7B</b></td>
-    <td>96.7</td><td>81.7</td><td>91.6</td>
-    <td>89.4</td><td>59.6</td><td>5.60</td>
+    <td><u>96.7</u></td><td><u>81.7</u></td><td><u>91.6</u></td>
+    <td><u>89.4</u></td><td><u>59.6</u></td><td><u>5.60</u></td>
     <td>3.22</td>
   </tr>
   <tr>
@@ -179,16 +179,15 @@ We compare CharTide against proprietary and open-source models on **ChartMimic**
     <td><b>CharTide-8B</b></td>
     <td><b>97.3</b></td><td><b>83.0</b></td><td><b>92.7</b></td>
     <td><b>91.7</b></td><td><b>64.6</b></td><td><b>5.93</b></td>
-    <td>3.23</td>
+    <td><u>3.23</u></td>
   </tr>
 </tbody>
 </table>
 
 
 ## 🔍 Usage Example
-Both snippets below have been **verified end-to-end on a single H100**. They match the pixel range used during training (`MAX_PIXELS=1024*1024 ≈ 1280*28*28`).
 
-> **Environment**: `torch==2.8.0`, `transformers==4.57.1`, `accelerate==1.12.0`, `pillow==12.0.0`, `matplotlib==3.10.7`. CharTide-7B uses `qwen-vl-utils==0.0.10`; **CharTide-8B requires `qwen-vl-utils>=0.0.11`** (we use `0.0.14`) because Qwen3-VL changes the vision-token bookkeeping.
+> **Versions**: `transformers>=4.57`, `qwen-vl-utils==0.0.10` for CharTide-7B; `qwen-vl-utils>=0.0.11` for CharTide-8B (Qwen3-VL backbone).
 
 ### CharTide-7B (Qwen2.5-VL backbone)
 ```python
@@ -268,7 +267,7 @@ processor = AutoProcessor.from_pretrained(
 ```
 
 ### Reproduction example
-Below is a real, unedited run: the left chart is the user-provided input, the middle and right are rendered from the matplotlib code produced by CharTide-7B and CharTide-8B respectively.
+The left chart is the user-provided input, the middle and right are rendered from the matplotlib code produced by CharTide-7B and CharTide-8B respectively.
 
 <div align="center">
 <img src="./assets/example_comparison_triple.png" width="100%">
