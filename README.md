@@ -278,14 +278,13 @@ The left chart is the user-provided input, the middle and right are rendered fro
 ## 📖 Citation
 If you find this project useful, please feel free to leave a star and cite our paper:
 ```
-@inproceedings{zheng2026chartide,
-      title={CharTide: Data-Centric Chart-to-Code Generation via Tri-Perspective Tuning and Inquiry-Driven Evolution},
+@misc{zheng2026chartidedatacentriccharttocodegeneration,
+      title={CharTide: Data-Centric Chart-to-Code Generation via Tri-Perspective Tuning and Inquiry-Driven Evolution}, 
       author={Xiangxi Zheng and Kuang He and Jiayi Hu and Ping Yu and Rui Yan and Yuan Yao and Peng Hou and Anxiang Zeng and Alex Jinpeng Wang},
-      booktitle={Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (ACL)},
       year={2026},
       eprint={2604.22192},
       archivePrefix={arXiv},
       primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2604.22192}
+      url={https://arxiv.org/abs/2604.22192}, 
 }
 ```
